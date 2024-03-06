@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+      {
+          "type": "Microsoft.Authorization/policySetDefinitions",
+          "apiVersion": "2019-09-01",
+          "name": "RockStarInitiative",
+          
+  "properties": {
+      "displayName": "test1.0",
+      "policyType": "Custom",
+      "description": "Tags+Monitor+Storage",
+      "metadata": {
+          "category": "Monitoring"
+      },
+      "parameters": {},
+      "policyDefinitions": [
+          {
+            /* Tags--Virtual machines should be migrated to new Azure Resource Manager resources Policy definition*/
+              "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1d84d5fb-01f6-4d12-ba4f-4a26081d403d"
+              
+          },
+          {
+            /* Monitor--Deploy Dependency agent for Linux virtual machines with Azure Monitoring Agent settings*/
+              "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/d55b81e1-984f-4a96-acab-fae204e3ca7f"
+              
+          },
+          {
+            /* Backup--Configure backup on virtual machines with a given tag to a new recovery services vault with a default policy*/
+            "policyDefinitionId":"/providers/Microsoft.Authorization/policyDefinitions/83644c87-93dd-49fe-bf9f-6aff8fd0834e"
+          }
+
+      ]
+  }
+}]
+      }
+  
