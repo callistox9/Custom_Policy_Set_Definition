@@ -1,0 +1,36 @@
+{
+   "$schema":"https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+   "contentVersion":"1.0.0.0",
+   "parameters":{
+      "principalId":{
+         "type":"array"
+      },
+      
+      "name":{
+         "type":"string",
+         "defaultValue":"[newGuid()]"
+      }
+   },
+   //For this deploment, variables are optional but it is a good practice to make use of variables.
+   "variables":{
+      "Reader":"[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]"
+   },
+   "resources":[
+      {
+         "type":"Microsoft.Authorization/roleAssignments",
+         "apiVersion":"2018-09-01-preview", // during deployment, this value may vary.
+         "name":"[guid(concat(parameters('name'),copyIndex()))]",
+         // looping through multiple users in the parameter file
+         "copy":{
+            "name":"useridLoop",
+            "count":"[length(parameters('principalId'))]"
+         },
+         "properties":{
+            "roleDefinitionId":"[variables('Reader')]",
+            "principalId":"[parameters('principalId')[copyIndex()]]"
+         }
+      }
+
+   ]
+   
+}
