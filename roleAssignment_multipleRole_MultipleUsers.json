@@ -1,0 +1,57 @@
+{
+   "$schema":"https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+   "contentVersion":"1.0.0.0",
+   "parameters":{
+      "principalId1":{
+         "type":"array"
+      },
+    "principalId2": {
+      "type": "array"
+
+    },
+      
+      "name":{
+         "type":"string",
+         "defaultValue":"[newGuid()]"
+      }
+   },
+   //For this deploment, variables are optional but it is a good practice to make use of variables.
+   "variables": {
+      "reader":"/subscriptions/be0c5ee5-8ba7-45a5-ba40-f3dc83f4631b/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "contributor":"/subscriptions/be0c5ee5-8ba7-45a5-ba40-f3dc83f4631b/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"
+   },
+   "resources":[
+      {
+         
+         "type":"Microsoft.Authorization/roleAssignments",
+         "apiVersion":"2018-09-01-preview", // during deployment, this value may vary.
+         "name": "[parameters('name')]",                             //"soumya11324",
+         // looping through multiple users in the parameter file
+         "copy":{
+            "name":"useridLoop1",
+            "count":"[length(parameters('principalId1'))]"
+         },
+         "properties":{
+            "roleDefinitionId":"[variables('reader')]",
+            "principalId":"[parameters('principalId1')[copyIndex()]]"// assigning role:contributor by iterating through n users in principalId2
+                                                                     
+         }
+      },
+      {
+         "type":"Microsoft.Authorization/roleAssignments",
+         "apiVersion":"2018-09-01-preview", // during deployment, this value may vary.
+         "name": "[parameters('name')]",
+         "copy":{
+            "name":"useridLoop2",
+            "count":"[length(parameters('principalId2'))]"
+         },
+         "properties": {
+            "roleDefinitionId": "[variables('contributor')]",
+            "principalId":"[parameters('principalId2')[copyIndex()]]" // assigning role:contributor by iterating through n users in principalId2
+
+                                                                     
+         }
+      }
+
+   ]
+}

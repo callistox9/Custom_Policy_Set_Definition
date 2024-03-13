@@ -1,0 +1,19 @@
+
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "principalId1": {
+      "value": [             
+         "140639c0-ae9f-4389-82ad-503214220c67",
+         "3eb46265-ed9b-4902-9aaf-027cb891f2f5"
+      ]
+    },
+    "principalId2": {
+      "value": [
+         "140639c0-ae9f-4389-82ad-503214220c68",
+         "3eb46265-ed9b-4902-9aaf-027cb891f2f4"
+      ]
+    }
+  }
+}
