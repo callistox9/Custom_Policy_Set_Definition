@@ -24,9 +24,11 @@ foreach ($row in $csv) {
     #Displays warnig if the respective roleDefinitingId is null, thus jumps to another execution.
     Write-Error "RoleDefinition Id for the current iteration is undefined"
     Write-Warning "RoleDefinitionid is null or empty for this user/servicePrincipals/groups/directoryObjects. Skipping..." 
+    #Displays RowNo at which the RoleDefinitionId is null
     "The specific row has null RoleDefinitionId"
     "RowNo ---------------" + $RowNo
-    Write-Error "SignInName---RoleDefinitionId"
+    Write-Error "SignInName---RoleDefinitionName"
+    #Displays the SignInName and RoleDefinitionName of the respective row iteration
     "SignInName ----------" + $SignInName 
     "RoleDefinitionName --" + $RoleDefinitionName
     Write-Error "*****************************************"
