@@ -3,10 +3,10 @@ Repository_containing custom-made policy initiative.
 <p>
 A custom ARM template for the deployment of Policy Initiative</p>
 <br>
-In this policy, I have defined 3 policy initiatives.
+In this policySetDefination, I have defined 3 policies:-
 <ol>
   <li>
-  Tags--Virtual machines should be migrated to new Azure Resource Manager resources Policy definition
+  Tags--Virtual machines should be migrated to the new Azure Resource Manager resources Policy definition
   </li>
   <li>
     Monitor--Deploy Dependency agent for Linux virtual machines with Azure Monitoring Agent settings
@@ -16,7 +16,7 @@ In this policy, I have defined 3 policy initiatives.
   </li>
 </ol>
 <p>
-Developers are free to contribute and create pull requests
+Developers are free to contribute and create pull requests :)
 </p>
 
 
