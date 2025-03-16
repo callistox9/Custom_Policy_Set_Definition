@@ -12,11 +12,11 @@ foreach ($row in $csv) {
   $SignInName = $row.SignInName
   $RowNo = $row.RowNo
 
-  #Test condition to check whether roleDefination is null or not.
+  # Test condition to check whether roleDefination is null or not.
 
   if (-not [string]::IsNullOrEmpty($RoleDefinitionId)) {
         
-    #Command to execute the role assignments.
+  # Command to execute the role assignments.
     
     New-AzRoleAssignment  -RoleDefinitionId $RoleDefinitionId -ObjectId $ObjectId -Scope $Scope
   }
